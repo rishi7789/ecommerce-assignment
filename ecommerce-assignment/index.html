@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product-page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div id="logo">LOGO</div>
+        <nav>
+            <ul>
+                <li><a href="">Home</a></li>
+                <li><a href="">Products</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Contact</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+
+    </section>
+
+    <footer>
+        <div class="social-media">
+            <h3>Follow Us on</h3>
+            <a href="https://facebook.com" target="_blank">Facebook</a>
+            <a href="https://twitter.com" target="_blank">Twitter</a>
+            <a href="https://instagram.com" target="_blank">Instagram</a>
+        </div>
+
+        <div class="newsletter">
+            <h3>Subscribe to our Newsletter</h3>
+            <form id="newsletterForm">
+                <input type="email" placeholder="Enter your email" />
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+        </div>
+    </footer>
+
+
+
+    <script>
+        let products = [
+            {
+                name: "Tshirt",
+                image: "images/tshirt.jpeg",
+                desc: "Description for tshirt",
+                price: 400
+            },
+            {
+                name: "Jeans",
+                image: "images/jeans.jpeg",
+                desc: "Description for Jeans",
+                price: 1500
+            },
+            {
+                name: "Jacket",
+                image: "images/jacket.jpeg",
+                desc: "Description for jacket",
+                price: 2000
+            },
+
+
+        ]
+
+        let productContainer = document.querySelector('section');
+        productContainer.innerHTML = products.map((item, index) => `
+              <div id="productcard-${index}" class="productcard">
+            <img src="${item.image}" alt="productimg">
+            <h3 id="pname-${index}" class="pname">${item.name}</h3>
+            <p>${item.desc}</p>
+            <select id="size-${index}" class="size">
+                <option value="S">S</option>;
+                <option value="L">L</option>;
+                <option value="XL">XL</option>;
+                <option value="XXL">XXL</option>;
+            </select>
+            <span id="price-${index}" class="price">${item.price}</span>
+            <span>
+                <button id="incrementbtn-${index} class="incrementbtn" onclick="decrement(${index})">-</button>
+                <span id="quantity-${index}" class="quantity">1</span>
+                <button id="decrementbtn-${index}" class="decrementbtn" onclick="increment(${index})">+</button>
+            </span> <br>
+            <button id="cartbtn-${index}" class="cartbtn" onclick="cartfunc(${index})">Add to cart</button>
+        </div> 
+        `)
+
+        //logic for quantity update
+
+        function increment(index) {
+            var quantity = document.querySelector(`#quantity-${index}`);
+            var pricetext = document.querySelector(`#price-${index}`);
+            var productPrice = document.querySelector(`#price-${index}`).innerText;
+            var count = 1;
+            count++;
+
+            quantity.innerText = count;
+            var price = productPrice * count;
+            pricetext.innerText = price;
+
+        }
+        function decrement(index) {
+            if (count > 1) {
+                count--;
+            }
+            quantity.innerText = count;
+
+            var price = productPrice * count;
+            pricetext.innerText = price;
+        }
+
+
+        //logic to store product data in local storage
+        function cartfunc(index) {
+            const productName = document.querySelector(`#pname-${index}`).innerText;
+            const productPrice = document.querySelector(`#price-${index}`).innerText;
+            const productSize = document.querySelector(`#size-${index}`).value;
+            const productQuantity = document.querySelector(`#quantity-${index}`).innerText;
+
+            const productData = {
+                name: productName,
+                price: productPrice,
+                size: productSize,
+                quantity: productQuantity,
+            };
+
+            let items = JSON.parse(localStorage.getItem('cart')) || [];
+            items.push(productData);
+            localStorage.setItem('cart', JSON.stringify(items));
+
+            alert("Product added to cart!")
+
+
+        }
+
+    </script>
+</body>
+
+</html>

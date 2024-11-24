@@ -1,0 +1,201 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fceded;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 20px;
+    background-color: #6011c7;
+    color: white;
+    /* width: 100%; */
+}
+
+#logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.productcard {
+    border: 2px solid rgb(241, 228, 228);
+    border-radius: 10px;
+    width: 250px;
+    padding: 20px;
+}
+
+.productcard img {
+    width: 240px;
+    height: 250px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.productcard p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.productcard select {
+    padding: 5px;
+    margin-bottom: 15px;
+}
+
+.price {
+    font-weight: bold;
+}
+
+.productcard .price {
+    padding: 20px;
+}
+
+.productcard button {
+    background: #6011c7;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.productcard button:hover {
+    background: black;
+    color: white;
+}
+
+.cartbtn {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+#cartCard {
+    margin-top: 30px;
+    border: 2px solid rgb(241, 228, 228);
+    border-radius: 10px;
+    width: 250px;
+    padding: 20px;
+}
+
+#removebtn {
+    background-color: #6011c7;
+    color: white;
+    padding: 5px;
+    cursor: pointer;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #6011c7;
+    color: white;
+    padding: 10px;
+    display: flex;
+    gap: 100px;
+    justify-content: center;
+}
+
+.social-media,
+.newsletter {
+
+    text-align: center;
+}
+
+.social-media h3,
+.newsletter h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.social-media a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+}
+
+.newsletter input {
+    padding: 5px;
+    border: 1px solid black;
+    width: 230px;
+    font-size: 15px;
+}
+
+.newsletter button {
+    padding: 5px;
+    background-color: #dacbee;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#cartItems {
+    display: flex;
+}
+
+/* for responsive design */
+@media (max-width: 768px) {
+
+    header {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    section {
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+        height: 50%;
+        text-align: center;
+        align-items: center;
+    }
+
+    #cartItems {
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    footer {
+        position: relative;
+        padding: 0px;
+        flex-direction: column;
+        gap: 40px;
+    }
+}

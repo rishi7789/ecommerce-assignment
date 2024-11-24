@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart-page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div>
+        <header>
+            <div id="logo">LOGO</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html">Products</a></li>
+                    <li><a href="">About</a></li>
+                    <li><a href="">Contact</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div id="cartItems"></div>
+
+        <footer id="cart-footer">
+            <div class="social-media">
+                <h3>Follow Us on</h3>
+                <a href="https://facebook.com" target="_blank">Facebook</a>
+                <a href="https://twitter.com" target="_blank">Twitter</a>
+                <a href="https://instagram.com" target="_blank">Instagram</a>
+            </div>
+
+            <div class="newsletter">
+                <h3>Subscribe to our Newsletter</h3>
+                <form id="newsletterForm">
+                    <input type="email" placeholder="Enter your email" required />
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+    </div>
+    </footer>
+    </div>
+
+    <script>
+
+        let storageItems = JSON.parse(localStorage.getItem('cart'));
+        let cart = document.getElementById('cartItems');
+
+        function display() {
+            if (storageItems) {
+                cart.innerHTML = storageItems.map((item, index) => `
+                <div id="cartCard">
+                    <h3>${item.name}</h3>
+                    <p>Size: ${item.size}</p>
+                    <p>Price: ${item.price}</p>
+                    <p>Quantity: ${item.quantity}</p>
+                    <button id="removebtn" onClick="removeItems(${index})">Remove</button>
+                </div>
+            `)
+            } else {
+                cart.innerHTML = "<h2>Cart is empty!</h2>";
+            }
+        }
+        display();
+
+        function removeItems(index) {
+            storageItems = storageItems.filter((items, id) => id !== index);
+            localStorage.setItem('cart', JSON.stringify(storageItems));
+            display();
+        }
+    </script>
+</body>
+
+</html>
